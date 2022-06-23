@@ -3,18 +3,22 @@ server:
 spring:
   application:
     name: lightingRouting
-  resources:
-    static-locations: file:D:\workspace\spider_workspace\spider-manager\web\dist
-  mvc:
-    static-path-pattern:/**
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: test01
-          uri: https://cn.bing.com
+          uri: lb://MICROSERVICE
           predicates:
             - Path=/xxx/**               #断言，路径匹配 注意：Path 中 P 为大写
             - Method=GET
           filters:
             - StripPrefix=1
-
+eureka:
+  client:
+    register-with-eureka: false #不注册服务
+    fetch-registry: true #不拉去服务清单
+    serviceUrl:
+      defaultZone: http://192.168.4.18:8022/eureka/,http://192.168.4.18:8023/eureka/
