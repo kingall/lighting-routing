@@ -1,6 +1,5 @@
 server:
   port: 8081
-
 spring:
   application:
     name: lightingRouting
@@ -16,7 +15,7 @@ spring:
             - Path=/xxx/**               #断言，路径匹配 注意：Path 中 P 为大写
             - Method=GET
           filters:
-            - StripPrefix=1
+
 eureka:
   client:
     register-with-eureka: false #不注册服务
